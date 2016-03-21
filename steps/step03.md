@@ -1,7 +1,24 @@
-# Hints:
-* Use `advancedSearch` to list channel in `channels` collection (See [documentation](http://kuzzleio.github.io/sdk-documentation/#advancedsearch))
-* Following query could help somewhere:
+# Steps
 
+In IRC-style messaging systems, we can create and switch channels to chat into. Follow these steps to ask Kuzzle the list of existing channels.
+
+**Fill the `getChannels` method in `store/channels.js`:**
+
+* Search for existing documents in the `channels` collection. Documents in this data collection describe existing channels in the following format:
+
+```json
+{
+  "name": "channel name"
+}
+```
+
+* Put found channel names in `this.state.channels`
+
+# Hints
+
+* [Advanced Search documentation](http://kuzzleio.github.io/sdk-documentation/#advancedsearch)
+* [KuzzleDocument properties](http://kuzzleio.github.io/sdk-documentation/#properties55)
+* Search query to use:
 ```javascript
 {
   sort: ['name'],
@@ -10,7 +27,11 @@
 };
 ```
 
-# Previous step's solution:
+# What you should see
+
+The left panel now lists the two default channels: #general and #random.
+
+# Previous step's solution
 In `src/store/messages.js`:
 
 ```javascript
@@ -19,7 +40,7 @@ subscribeMessages (channel) {
     options = {
       // We want created messages only
       scope: 'in',
-      // We treate our messages as any other messages
+      // We treat our messages as any other messages
       subscribeToSelf: true,
       // We want only messages once they are stored (and volatile are always done)
       state: 'done'
@@ -55,3 +76,11 @@ sendMessage (content, user, channel) {
     .publishMessage(message);
 }
 ```
+
+# Next Step
+
+```
+git checkout . && git checkout step04
+```
+
+[Access to step 4](./step04.md)

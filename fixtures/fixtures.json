@@ -1,0 +1,77 @@
+[
+  {
+    "action": "createIndex"
+  },
+  {
+    "folder": "collections",
+    "file": "channels.json",
+    "identifier": "channels",
+    "action": "createCollection"
+  },
+  {
+    "folder": "collections",
+    "file": "messages.json",
+    "identifier": "messages",
+    "action": "createCollection"
+  },
+  {
+    "folder": "channels",
+    "file": "general.json",
+    "identifier": "general",
+    "action": "createDocument"
+  },
+  {
+    "folder": "channels",
+    "file": "random.json",
+    "identifier": "random",
+    "action": "createDocument"
+  },
+  {
+    "folder": "roles",
+    "file": "auth.json",
+    "identifier": "auth",
+    "action": "createRole"
+  },
+  {
+    "folder": "roles",
+    "file": "klack-channels.json",
+    "identifier": "klack-channels",
+    "action": "createRole"
+  },
+  {
+    "folder": "roles",
+    "file": "klack-messages.json",
+    "identifier": "klack-messages",
+    "action": "createRole"
+  },
+  {
+    "folder": "roles",
+    "file": "klack-messages-restricted.json",
+    "identifier": "klack-messages-restricted",
+    "action": "createRole"
+  },
+  {
+    "folder": "profiles",
+    "file": "klack-user.json",
+    "identifier": "klack-user",
+    "action": "createProfile"
+  },
+  {
+    "folder": "profiles",
+    "file": "klack-user-restricted.json",
+    "identifier": "klack-user-restricted",
+    "action": "createProfile"
+  },
+  {
+    "folder": "users",
+    "file": "kuzzle.json",
+    "identifier": "kuzzle",
+    "action": "createUser"
+  },
+  {
+    "folder": "users",
+    "file": "toto.json",
+    "identifier": "toto",
+    "action": "createUser"
+  }
+]

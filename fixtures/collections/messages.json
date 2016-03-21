@@ -2,5 +2,25 @@
   "channel": {
     "type": "string",
     "index": "not_analyzed"
+  },
+  "content": {
+    "type": "string"
+  },
+  "date": {
+    "type": "long"
+  },
+  "user": {
+    "properties": {
+      "id": {
+        "type": "object",
+        "enabled": false
+      },
+      "pictureId": {
+        "type": "long"
+      },
+      "username": {
+        "type": "string"
+      }
+    }
   }
 }
