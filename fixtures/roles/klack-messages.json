@@ -1,0 +1,31 @@
+{
+  "indexes": {
+    "klack": {
+      "_canDelete": false,
+      "collections": {
+        "messages": {
+          "_canDelete": false,
+          "controllers": {
+            "read": {
+              "actions": {
+                "search": true
+              }
+            },
+            "write": {
+              "actions": {
+                "create": true,
+                "delete": true
+              }
+            },
+            "subscribe": {
+              "actions": {
+                "on": true,
+                "off": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

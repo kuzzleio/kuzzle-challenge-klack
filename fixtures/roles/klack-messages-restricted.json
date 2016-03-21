@@ -1,0 +1,42 @@
+{
+  "indexes": {
+    "klack": {
+      "_canDelete": false,
+      "collections": {
+        "messages": {
+          "_canDelete": false,
+          "controllers": {
+            "read": {
+              "actions": {
+                "search": true
+              }
+            },
+            "write": {
+              "actions": {
+                "create": true,
+                "delete": {
+                  "args": {
+                    "document": {
+                      "index": "klack",
+                      "collection": "messages",
+                      "action": {
+                        "get": "$currentId"
+                      }
+                    }
+                  },
+                  "test": "return args.document.content.user.id === $currentUserId"
+                }
+              }
+            },
+            "subscribe": {
+              "actions": {
+                "on": true,
+                "off": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

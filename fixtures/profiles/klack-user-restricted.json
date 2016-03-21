@@ -1,0 +1,7 @@
+{
+  "roles": [
+    "auth",
+    "klack-messages-restricted",
+    "klack-channels"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "indexes": {
+    "klack": {
+      "_canDelete": false,
+      "collections": {
+        "channels": {
+          "_canDelete": false,
+          "controllers": {
+            "read": {
+              "actions": {
+                "search": true
+              }
+            },
+            "write": {
+              "actions": {
+                "create": {
+                  "args": {
+                    "documents": {
+                      "index": "klack",
+                      "collection": "channels",
+                      "action": {
+                        "search": {
+                          "filter": {
+                            "term": {
+                              "name": "$requestObject.data.body.name"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "test": "return args.documents.length === 0;"
+                },
+                "delete": true
+              }
+            },
+            "subscribe": {
+              "actions": {
+                "on": true,
+                "off": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
