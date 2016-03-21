@@ -108,6 +108,14 @@ body {
     float: left;
 }
 
+.team-menu .status {
+    color: red;
+}
+
+.team-menu .status.connected {
+    color: green;
+}
+
 .team-menu .logout {
     font-weight: normal;
     float: right;

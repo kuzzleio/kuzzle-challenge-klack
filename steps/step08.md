@@ -1,13 +1,18 @@
-# Hints:
-* Use `advancedSearch` to list all channel messages in the `messages` collection (See [documentation](http://kuzzleio.github.io/sdk-documentation/#advancedsearch))
-* Message should be pushed in `state.messages` with its id:
-```javascript
-{
-  // Note: we're using ES6 spread operator https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator
-  ...response.result._source,
-  id: response.result._id
-}
-```
+# Steps
+
+On Slack we have no pagination, but we probably want to limit the amount of retrieved messages.
+
+**Fill the `loadMessages` method in `messages.js`:**
+
+* Modify the step 6 query in order to list only the 30 last messages
+
+# Hints
+
+* [From / Size](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/search-request-from-size.html)
+
+# What you should see
+
+When switching from a room to another, only the 30 latest messages should be displayed.
 
 # Previous step's solution:
 ```javascript
@@ -67,3 +72,11 @@ delete (message) {
     });
 }
 ```
+
+# Next Step
+
+```
+git checkout . && git checkout step09
+```
+
+[Access to step 9](./step09.md)

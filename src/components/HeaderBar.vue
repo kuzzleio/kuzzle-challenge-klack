@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="team-menu">
-      <span>Klack</span>
+      <span class="status" :class="{'connected' : isConnected}">o</span> &nbsp; <span>Klack</span>
       <a v-link="{ path: '/login' }" class="logout" @click="logout">Logout</a>
     </div>
     <div class="channel-menu">
@@ -30,6 +30,7 @@
 
 <script>
   import ChannelName from './ChannelName';
+  import kuzzle from '../services/kuzzle';
 
   export default {
     props:['channelStore', 'authStore', 'messageStore'],
@@ -38,7 +39,8 @@
     },
     data () {
       return {
-        state: this.channelStore.state
+        state: this.channelStore.state,
+        isConnected: false
       }
     },
     methods: {
@@ -53,6 +55,27 @@
       logout () {
         this.authStore.logout();
       }
+    },
+    created () {
+      if (!kuzzle.addListener) {
+        return false;
+      }
+
+      if (kuzzle.state === 'connected') {
+        this.isConnected = true;
+      }
+
+      kuzzle.addListener('connected', () => {
+        this.isConnected = true;
+    });
+
+      kuzzle.addListener('reconnected', () => {
+        this.isConnected = true;
+      });
+
+      kuzzle.addListener('disconnected', () => {
+        this.isConnected = false;
+      });
     }
   }
 </script>
