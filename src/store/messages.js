@@ -32,11 +32,12 @@ export default {
   /**
    * Load messages from Kuzzle according to the channel
    * @param {String} channel
-   * TODO - Step 8: Fetch only the 30 last messages
    */
   loadMessages (channel) {
     var query = {
       sort: {date: 'desc'},
+      from: 0,
+      size: 30,
       filter: {
         term: {
           channel: channel
