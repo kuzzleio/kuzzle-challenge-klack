@@ -13,10 +13,6 @@ export function configRouter (router) {
         ':channel': {
           name: 'chat',
           component: Chat
-        },
-        '/': {
-          name: 'default-chat',
-          component: Chat
         }
       }
     },

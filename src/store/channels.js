@@ -4,7 +4,7 @@ export default {
   state: {
     channels: [],
     searchTerms: '',
-    current: "random"
+    current: null
   },
   /**
    * Get channels from Kuzzle
@@ -49,6 +49,7 @@ export default {
    * @param {String} channel
    */
   setCurrent (channel) {
+    this.state.current = channel;
     this.state.searchTerms = '';
   },
   /**
