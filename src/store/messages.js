@@ -65,7 +65,6 @@ export default {
   /**
    * Subscribe to messages according to the channel
    * @param {String} channel
-   * TODO - Step 7: This code should be adapted to follow scope.out as well
    */
   subscribeMessages (channel) {
     var
@@ -121,9 +120,18 @@ export default {
   /**
    * Delete a message
    * @param {String} message
-   * TODO - Step 7: Delete message from Kuzzle pesistant data
    */
   delete (message) {
-    return false;
+    if (!message || !message.id) {
+      return false;
+    }
+
+    kuzzle
+      .dataCollectionFactory('messages')
+      .deleteDocument(message.id, (error, response) => {
+        if (error) {
+          console.error(error);
+        }
+      });
   }
 }
