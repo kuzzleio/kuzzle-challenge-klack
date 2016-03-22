@@ -42,11 +42,16 @@ export default {
   /**
    * Subscribe to messages according to the channel
    * @param {String} channel
-   * TODO - Step 5: Add a filter to subscribe to a specific channel's messages
    * TODO - Step 7: This code should be adapted to follow scope.out as well
    */
   subscribeMessages (channel) {
     var
+    // Define the filter
+      filter = {
+        term: {
+          channel: channel
+        }
+      },
       options = {
         // We want created messages only
         scope: 'in',
@@ -63,8 +68,7 @@ export default {
 
     subscription = kuzzle
       .dataCollectionFactory('messages')
-      // Without filter as we want all incoming new message notifications
-      .subscribe({}, options, (error, response) => {
+      .subscribe(filter, options, (error, response) => {
         // We push messages in our state
         this.state.messages.push({
           ...response.result._source,
