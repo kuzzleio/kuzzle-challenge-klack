@@ -32,11 +32,35 @@ export default {
   /**
    * Load messages from Kuzzle according to the channel
    * @param {String} channel
-   * TODO - Step 6: Fetch channel messages from Kuzzle persistent data
    * TODO - Step 8: Fetch only the 30 last messages
    */
   loadMessages (channel) {
-    this.state.messages = [];
+    var query = {
+      sort: {date: 'desc'},
+      filter: {
+        term: {
+          channel: channel
+        }
+      }
+    };
+
+    kuzzle
+      .dataCollectionFactory('messages')
+      .advancedSearch(query, (error, result) => {
+        if (error) {
+          console.error(error);
+          return false;
+        }
+
+        this.state.messages = result.documents
+          .map(message => {
+            return {
+              ...message.content,
+              id: message.id
+            };
+          })
+          .reverse();
+      });
   },
   /**
    * Subscribe to messages according to the channel
