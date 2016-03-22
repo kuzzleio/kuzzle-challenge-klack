@@ -13,11 +13,14 @@ export default {
    * @param {String} content
    * @param {Object} user
    * @param {String} channel
-   * TODO - Step 2: Publish a volatile message with Kuzzle
    * TODO - Step 6: Adapt code to create a new persisted message
    */
   sendMessage (content, user, channel) {
     var message = {content, user, channel, date: Date.now()};
+
+    kuzzle
+      .dataCollectionFactory('messages')
+      .publishMessage(message);
   },
 
   /**
