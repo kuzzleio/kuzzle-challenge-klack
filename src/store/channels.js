@@ -54,8 +54,29 @@ export default {
   /**
    * Subscribe to channels
    * @param {String} channel
-   * TODO - Step4: Subscribe with Kuzzle to `channels` collection's notifications
    */
   subscribeChannels () {
+    var options = {
+      // We want created channels only
+      scope: 'in',
+      // We treate our channel creations as any other channels
+      subscribeToSelf: true,
+      // We want only channels once they are stored
+      state: 'done'
+    };
+
+    kuzzle
+      .dataCollectionFactory('channels')
+      // Without filter as we want all incoming new channel notifications
+      .subscribe({}, options, (error, response) => {
+        if (error) {
+          console.error(error);
+          return false;
+        }
+
+        // We push channels in our state
+        this.state.channels.push(response.result._source.name);
+        this.state.channels.sort();
+      });
   }
 }
