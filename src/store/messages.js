@@ -13,14 +13,13 @@ export default {
    * @param {String} content
    * @param {Object} user
    * @param {String} channel
-   * TODO - Step 6: Adapt code to create a new persisted message
    */
   sendMessage (content, user, channel) {
     var message = {content, user, channel, date: Date.now()};
 
     kuzzle
       .dataCollectionFactory('messages')
-      .publishMessage(message);
+      .createDocument(message);
   },
 
   /**
