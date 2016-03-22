@@ -3,13 +3,13 @@ import {router} from '../main';
 
 export default {
   state: {
-    id: -1,
-    username: "Bob",
-    pictureId: Math.floor(Math.random() * 12 + 1)
+    id: null,
+    username: null,
+    pictureId: null
   },
 
   init () {
-    this.state.pictureId = Math.floor(Math.random() * 12 + 1);
+    //this.state.pictureId = Math.floor(Math.random() * 12 + 1);
   },
   isAuthenticated () {
     return Boolean(this.state.id);
