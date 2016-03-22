@@ -26,11 +26,17 @@
         </avatar>
       </span>
 
-      <input
-      class="user-menu-username input-box-text"
+      <span
+        class="user-menu-username"
         type="text"
-        placeholder="Username"
-        v-model="userStore.state.username"/>
+        placeholder="Username">
+        {{userStore.state.username}}
+      </span>
+      <!--<input-->
+      <!--class="user-menu-username input-box-text"-->
+      <!--type="text"-->
+      <!--placeholder="Username"-->
+      <!--v-model="userStore.state.username"/>-->
     </div>
   </div>
 </template>
