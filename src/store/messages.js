@@ -77,7 +77,7 @@ export default {
       },
       options = {
         // We want created messages only
-        scope: 'in',
+        scope: 'all',
         // We treate our messages as any other messages
         subscribeToSelf: true,
         // We want only messages once they are stored (and volatile are always done)
@@ -92,11 +92,19 @@ export default {
     subscription = kuzzle
       .dataCollectionFactory('messages')
       .subscribe(filter, options, (error, response) => {
-        // We push messages in our state
-        this.state.messages.push({
-          ...response.result._source,
-          id: response.result._id
-        });
+        // response.scope contains the scope depending to the subscription
+        if (response.scope === 'out') {
+          this.state.messages = this.state.messages.filter(message => {
+            return message.id !== response.result._id;
+          });
+        }
+
+        if (response.scope === 'in') {
+          this.state.messages.push({
+            ...response.result._source,
+            id: response.result._id
+          });
+        }
       });
   },
   /**
