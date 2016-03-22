@@ -8,9 +8,24 @@ export default {
   },
   /**
    * Get channels from Kuzzle
-   * TODO - Step 3: Fetch channels from Kuzzle peristent data
    */
   getChannels () {
+    var query = {
+      sort: ['name'],
+      from: 0,
+      size: 9999
+    };
+
+    kuzzle
+      .dataCollectionFactory('channels')
+      .advancedSearch(query, (error, result) => {
+        if (error) {
+          console.error(error);
+          return false;
+        }
+
+        this.state.channels = result.documents.map(channel => channel.content.name);
+      });
   },
   /**
    * Allow to add a new channel given in parameter
