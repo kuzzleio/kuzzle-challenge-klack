@@ -19,13 +19,16 @@ export default {
 
     if (!jwt) {
       cb('No current user.');
-      /** TODO Step - 10: set the jwt token to undefined **/
-
+      kuzzle.setJwtToken(undefined);
       return false;
     }
 
-    /** TODO Step - 10: set the jwt token **/
-    /** TODO Step - 10: get the current user and call getCurrentUserCallback **/
+    kuzzle.setJwtToken(jwt);
+
+    kuzzle
+      .whoAmI((error, kuzzleUser) => {
+        getCurrentUserCallback(error, kuzzleUser, this.state, cb)
+      });
   },
   removeCurrentUser () {
     this.state.id = null;
