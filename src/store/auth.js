@@ -7,10 +7,17 @@ export default {
     errorLogin: null
   },
   login (username, password) {
-    /** TODO - Step 10: Log in the user to Kuzzle and call loginCallback function */
+    kuzzle.login('local', {username, password}, '1h', (error, response) => {
+      if (error) {
+        loginCallbackError(error, this.state);
+      }
+      else {
+        loginCallback(response.jwt, this.state);
+      }
+    });
   },
   logout () {
-    /** TODO - Step 10: Log out the user to Kuzzle */
+    kuzzle.logout();
     userStore.removeCurrentUser();
     window.sessionStorage.removeItem('jwt');
   }
