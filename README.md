@@ -78,3 +78,7 @@ Go to [step 1](./steps/step01.md) and let's code!
 ## Credits
 
 Styles come from https://github.com/scotch-io/meteor-slack
+
+## License
+
+This tutorial is published under [Apache 2 License](LICENSE.md).
