@@ -39,7 +39,7 @@ You can do it from the Kuzzle back-office, or from the [CLI](https://github.com/
 
 ## Preparation
 
-To load all the fixtures in kuzzle, you can use:
+Before running this tutorial, you'll need to install dependencies and to prepare the database. To do that, please run:
 
 ```bash
 # In the root folder of the workshop sources
